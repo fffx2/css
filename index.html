@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 접근성 CSS 검사 도구</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="app-bar">
+        <h1>웹 접근성 CSS 검사 도구</h1>
+        <p>CSS 코드를 입력하면 웹 접근성 관점에서 피드백을 제공합니다.</p>
+    </header>
+
+    <main class="main-content">
+        <section class="color-contrast-section">
+            <h2><span class="material-icons">contrast</span> 색상 명도 대비 검사</h2>
+            <div class="color-inputs">
+                <div class="color-input-group">
+                    <label for="backgroundColor">배경 색상</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="backgroundColor" value="#FFFFFF">
+                        <input type="text" id="backgroundColorText" value="#FFFFFF" 
+                               placeholder="예: #FFFFFF 또는 rgb(255, 255, 255)">
+                    </div>
+                </div>
+                <div class="color-input-group">
+                    <label for="textColor">텍스트 색상</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="textColor" value="#000000">
+                        <input type="text" id="textColorText" value="#000000"
+                               placeholder="예: #000000 또는 rgb(0, 0, 0)">
+                    </div>
+                </div>
+                <button class="material-button" onclick="checkContrast()">
+                    <span class="material-icons">analytics</span>
+                    명도 대비 검사
+                </button>
+            </div>
+            <div class="contrast-preview">
+                <div id="previewText" class="preview-box">
+                    <span class="preview-large">가나다 ABC 123</span>
+                    <span class="preview-small">가나다 ABC 123</span>
+                </div>
+            </div>
+            <div id="contrastResult" class="contrast-result">
+                <div class="result-card">
+                    <h3><span class="material-icons">assessment</span> 검사 결과</h3>
+                    <div id="contrastRatio" class="contrast-ratio"></div>
+                    <div id="wcagResults" class="wcag-results"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="input-section">
+            <h2><span class="material-icons">code</span> CSS 코드 입력</h2>
+            <div class="textarea-container">
+                <textarea id="cssInput" placeholder="여기에 CSS 코드를 입력하세요..." rows="10"></textarea>
+            </div>
+            <button class="material-button" onclick="analyzeCss()">
+                <span class="material-icons">analytics</span>
+                분석하기
+            </button>
+        </section>
+
+        <section class="results-section">
+            <h2><span class="material-icons">assessment</span> 분석 결과</h2>
+            <div id="results">
+                <div class="result-card">
+                    <h3><span class="material-icons">palette</span> 색상 대비 검사</h3>
+                    <div id="colorContrastResults" class="result-content"></div>
+                </div>
+                <div class="result-card">
+                    <h3><span class="material-icons">format_size</span> 글꼴 크기 검사</h3>
+                    <div id="fontSizeResults" class="result-content"></div>
+                </div>
+                <div class="result-card">
+                    <h3><span class="material-icons">devices</span> 반응형 디자인 검사</h3>
+                    <div id="responsiveResults" class="result-content"></div>
+                </div>
+                <div class="result-card">
+                    <h3><span class="material-icons">animation</span> 애니메이션 접근성 검사</h3>
+                    <div id="animationResults" class="result-content"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>본 도구는 웹 콘텐츠 접근성 지침(WCAG)을 기반으로 제작되었습니다.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
